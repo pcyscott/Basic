@@ -11,4 +11,10 @@ public class MainController {
     public String index(){
       return "연습중";
     }
+
+    @GetMapping("/about")
+    @ResponseBody
+    public String about(){
+        return "이러라고?";
+    }
 }
