@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
+    private long id = 20;
+    private long age = 30;
+
     @GetMapping("/sbb")
     @ResponseBody
     public String index(){
@@ -16,5 +19,11 @@ public class MainController {
     @ResponseBody
     public String about(){
         return "이러라고?";
+    }
+
+    @GetMapping("/age")
+    @ResponseBody
+    public Long AgeUp(){
+        return id+age;
     }
 }
