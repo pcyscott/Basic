@@ -69,8 +69,8 @@ public class MainController {
     @ResponseBody
     public List<Article> getArticleList(){
         return List.of(
-                Article.builder().title("제목").body("내용").build(),
-                Article.builder().title("제목1").body("내용1").build()      );
+                Article.builder().id(1).title("제목").body("내용").build(),
+                Article.builder().id(2).title("제목1").body("내용1").build()      );
     }
     @GetMapping("/articleMap")
     @ResponseBody
@@ -80,12 +80,31 @@ public class MainController {
                 "article2",Article.builder().title("제목1").body("내용1").build()      );
     }
 
+
+    @GetMapping("/articleList2")
+    @ResponseBody
+    public String getArticleList2(){
+        Article article1 = Article.builder().id(1).title("제목").body("내용").build();
+        Article article2 = Article.builder().id(2).title("제목1").body("내용1").build();
+
+        return """
+                <ul>
+                    <li>
+                        1번 / 제목1
+                    </li>
+                     <li>
+                        2번 / 제목2
+                    </li>
+                </ul>
+                """;
+
+    }
 }
 @Builder
 @Getter
 class Article {
 
-    private final long id = 2;
+    private final long id;
     private final String title;
     private final String body;
     private final boolean published = true;
