@@ -90,13 +90,17 @@ public class MainController {
         return """
                 <ul>
                     <li>
-                        1번 / 제목1
+                        %d번 / %s
                     </li>
                      <li>
-                        2번 / 제목2
+                        %d번 / %s
                     </li>
                 </ul>
-                """;
+                """.formatted(
+                        article1.getId(),
+                        article1.getTitle(),
+                        article2.getId(),
+                        article2.getTitle());
 
     }
 }
