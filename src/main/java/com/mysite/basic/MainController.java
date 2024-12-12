@@ -1,10 +1,13 @@
 package com.mysite.basic;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MainController {
@@ -52,15 +55,38 @@ public class MainController {
     @GetMapping("/article")
     @ResponseBody
     public Article getArticle(){
-        return new Article("제목1","내용1");
+        return Article.builder()
+                .title("제목2")
+                .body("내용2").build();
     } ;
+    @GetMapping("/map")
+    @ResponseBody
+    public Map<String, String> getMap() {
+        return Map.of("name", "Paul", "hobby", "reading");
+    }
+
+    @GetMapping("/articleList")
+    @ResponseBody
+    public List<Article> getArticleList(){
+        return List.of(
+                Article.builder().title("제목").body("내용").build(),
+                Article.builder().title("제목1").body("내용1").build()      );
+    }
+    @GetMapping("/articleMap")
+    @ResponseBody
+    public Map<String,Article> getArticleMap(){
+        return Map.of(
+                "article1",Article.builder().title("제목").body("내용").build(),
+                "article2",Article.builder().title("제목1").body("내용1").build()      );
+    }
+
 }
-@RequiredArgsConstructor
+@Builder
 @Getter
 class Article {
 
-    private long id;
+    private final long id = 2;
     private final String title;
     private final String body;
-    private boolean published;
+    private final boolean published = true;
 }
