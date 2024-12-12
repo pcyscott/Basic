@@ -1,13 +1,14 @@
 package com.mysite.basic;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
-    private long id = 20;
-    private long age = 30;
+
 
     @GetMapping("/sbb")
     @ResponseBody
@@ -21,11 +22,11 @@ public class MainController {
         return "이러라고?";
     }
 
-    @GetMapping("/age")
+    /*@GetMapping("/age")
     @ResponseBody
     public Long AgeUp(){
-        return id+age;
-    }
+        //return id+age;
+    }*/
 
     @GetMapping("/boolean")
     @ResponseBody
@@ -48,5 +49,18 @@ public class MainController {
         return Integer.toHexString(167);
     }
 
+    @GetMapping("/article")
+    @ResponseBody
+    public Article getArticle(){
+        return new Article(1, "제목1","내용1",false);
+    } ;
 }
+@AllArgsConstructor
+@Getter
+class Article {
 
+    public long id;
+    public String title;
+    public String body;
+    public boolean published;
+}
