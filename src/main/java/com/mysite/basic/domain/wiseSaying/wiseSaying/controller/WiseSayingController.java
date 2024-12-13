@@ -33,8 +33,13 @@ public class WiseSayingController {
     @GetMapping("/wiseSayings/{id}")
     public WiseSaying getItem( @PathVariable long id) {
 
-        Optional<WiseSaying> opWiseSaying = wiseSayingService.findById(1L);
+        Optional<WiseSaying> opWiseSaying = wiseSayingService.findById(id);
         return opWiseSaying.get();
+    }
+
+    @GetMapping("/wiseSayings/{id}/delete")
+    public boolean delteItem( @PathVariable long id) {
+        return  wiseSayingService.deleteById(id);
     }
 
 }

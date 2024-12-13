@@ -62,5 +62,9 @@ public class WiseSayingService {
                 .filter(wiseSaying -> wiseSaying.getId() == id)
                 .findFirst();
     }
+
+    public boolean deleteById(long id) {
+        return wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
+    }
 }
 
