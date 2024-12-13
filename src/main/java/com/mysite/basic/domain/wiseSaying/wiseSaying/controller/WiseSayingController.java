@@ -5,6 +5,7 @@ import com.mysite.basic.domain.wiseSaying.wiseSaying.service.WiseSayingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,14 +30,11 @@ public class WiseSayingController {
         return wiseSayingService.write(content,author);
     }
 
-    @GetMapping("/wiseSayings/1")
-    public WiseSaying getItem() {
+    @GetMapping("/wiseSayings/{id}")
+    public WiseSaying getItem( @PathVariable long id) {
+
         Optional<WiseSaying> opWiseSaying = wiseSayingService.findById(1L);
         return opWiseSaying.get();
     }
-    @GetMapping("/wiseSayings/2")
-    public WiseSaying getItem1() {
-        Optional<WiseSaying> opWiseSaying = wiseSayingService.findById(2L);
-        return opWiseSaying.get();
-    }
+
 }
