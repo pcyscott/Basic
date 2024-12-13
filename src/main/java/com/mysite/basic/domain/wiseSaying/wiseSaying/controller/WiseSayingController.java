@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @ResponseBody
@@ -26,5 +27,16 @@ public class WiseSayingController {
             @RequestParam(name = "content") String content,
             @RequestParam(name = "author")String author) {
         return wiseSayingService.write(content,author);
+    }
+
+    @GetMapping("/wiseSayings/1")
+    public WiseSaying getItem() {
+        Optional<WiseSaying> opWiseSaying = wiseSayingService.findById(1L);
+        return opWiseSaying.get();
+    }
+    @GetMapping("/wiseSayings/2")
+    public WiseSaying getItem1() {
+        Optional<WiseSaying> opWiseSaying = wiseSayingService.findById(2L);
+        return opWiseSaying.get();
     }
 }
